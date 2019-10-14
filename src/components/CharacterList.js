@@ -23,14 +23,14 @@ import { Link } from "react-router-dom";
   }, []);
 
   return (
-    <section className="character-list">
+    <div className="character-list">
       {characters.map(character => (
         
         <CharacterDetails key={character.id} character={character} />
         
       ))}
       
-    </section>
+    </div>
   );
 }
 
