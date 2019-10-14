@@ -6,8 +6,6 @@ const Character = (props) => {
  
   useEffect(() => {
     const id = props.match.params.id;
-    // change ^^^ that line and grab the id from the URL
-    // You will NEED to add a dependency array to this effect hook
 
        axios
         .get(`https://rickandmortyapi.com/api/character/${id}`)
@@ -19,18 +17,12 @@ const Character = (props) => {
         });
 
   },[]);
-  
-  // Uncomment this only when you have moved on to the stretch goals
-  // const saveMovie = () => {
-  //   const addToSavedList = props.addToSavedList;
-  //   addToSavedList(movie)
-  // }
 
   if (!character) {
-    return <div>Loading movie information...</div>;
+    return <div>Loading character information...</div>;
   }
 
-  const { name, status, species, type, gender } = characters;
+  const { name, status, species, type, gender } = character;
   return (
     <div className="main">
       <div className="main">

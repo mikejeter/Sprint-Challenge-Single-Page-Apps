@@ -5,13 +5,13 @@ import { Link } from "react-router-dom";
 
   // TODO: Add useState to track data from useEffect
   const CharacterList = props => {
-    const [character, setCharacters] = useState([])
+    const [characters, setCharacters] = useState([])
   useEffect(() => {
     // TODO: Add API Request here - must run in `useEffect`
     //  Important: verify the 2nd `useEffect` parameter: the dependancies array!
-    const getCharacters = () => {
+    const getCharacter = () => {
       axios
-        .get('https://rickandmortyapi.com/api/character')
+        .get('https://rickandmortyapi.com/api/character/')
         .then(response => {
           setCharacters(response.data);
         })
@@ -19,14 +19,14 @@ import { Link } from "react-router-dom";
           console.error('Server Error', error);
         });
     }
-     getCharacters();
+     getCharacter();
   }, []);
 
   return (
     <section className="character-list">
-      {character.map(characters => (
+      {characters.map(character => (
         
-        <CharacterDetails key={characters.id} characters={characters} />
+        <CharacterDetails key={character.id} character={character} />
         
       ))}
       
@@ -34,11 +34,11 @@ import { Link } from "react-router-dom";
   );
 }
 
-function CharacterDetails({ characters }) {
-  const { name, status, species, type, gender } = characters;
+function CharacterDetails({ character }) {
+  const { name, status, species, type, gender } = character;
   return (
     <div className="main">
-      <Link to={`/Character/${characters.id}`}>
+      <Link to={`/Character/${character.id}`}>
       <h2>{name}</h2>
        </Link>
       <div className="main">
